@@ -5,6 +5,7 @@ import com.fersanp.gleidson.domain.service.OrderProcessorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -14,8 +15,9 @@ public class OrderListener {
 
     private final OrderProcessorService orderProcessorService;
 
+    @RetryableTopic(attempts = "1")
     @KafkaListener(topics = "${topic.order.consumer}", groupId = "group_id")
-    public void consume(Order order){
+    public void consume(Order order) {
         log.info("Order: {}", order);
         orderProcessorService.process(order);
     }

@@ -9,5 +9,9 @@ import org.springframework.stereotype.Service;
 public class OrderProcessorService {
     public void process(Order order) {
       log.info("order processed={}", order);
+
+      if(order.getId() == null) {
+          throw new RuntimeException("invalid id");
+      }
     }
 }
