@@ -1,7 +1,6 @@
 package com.fersanp.gleidson.features;
 
 import br.com.six2six.fixturefactory.Fixture;
-import br.com.six2six.fixturefactory.Rule;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.fersanp.gleidson.config.KafkaConfig;
 import com.fersanp.gleidson.consumer.OrderListener;
@@ -13,13 +12,14 @@ import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,8 +30,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.util.UUID;
 
 @Import(KafkaConfig.class)
 @ExtendWith(MockitoExtension.class)

@@ -79,7 +79,7 @@ public class KafkaConfig {
     @Bean
     @Profile("test")
     public DefaultKafkaConsumerFactory<String, Order> consumerFactory(KafkaContainer kafkaContainer) {
-        return new DefaultKafkaConsumerFactory<>(consumerProperties(kafkaContainer), new StringDeserializer(), new JsonDeserializer<Order>(Order.class));
+        return new DefaultKafkaConsumerFactory<>(consumerProperties(kafkaContainer), new StringDeserializer(), new JsonDeserializer<>(Order.class));
     }
 
     @Bean
